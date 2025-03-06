@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <style>
+    #output {
+      font-size: 48px;
+      font-weight: bold;
+      margin: 20px;
+      display: inline-block;
+    }
+  </style>
+  <title>Debugging Range Slider</title>
+</head>
+<body>
+  <div>
+    <label>First Outline:</label>
+    <input type="range" min="0" max="10" step="1" value="1" id="tt-outline-first-width-input">
+    <input type="color" value="#ff0000" id="tt-outline-first-fill-color-input"><br>
+
+    <label>Second Outline:</label>
+    <input type="range" min="0" max="10" step="1" value="1" id="tt-outline-second-width-input">
+    <input type="color" value="#00ff00" id="tt-outline-second-fill-color-input"><br>
+
+    <label>Third Outline:</label>
+    <input type="range" min="0" max="10" step="1" value="1" id="tt-outline-global-width-input">
+    <input type="color" value="#0000ff" id="tt-outline-global-fill-color-input"><br>
+
+    <label>Fourth Outline:</label>
+    <input type="range" min="0" max="10" step="1" value="1" id="tt-outline-global2-width-input">
+    <input type="color" value="#ffff00" id="tt-outline-global2-fill-color-input"><br>
+  </div>
+
+  <div id="output">Text Preview</div>
+
+  <script>
+    const updateOutline = () => {
+      const outlines = [
+        {
+          width: parseInt(document.getElementById("tt-outline-first-width-input").value),
+          color: document.getElementById("tt-outline-first-fill-color-input").value
+        },
+        {
+          width: parseInt(document.getElementById("tt-outline-second-width-input").value),
+          color: document.getElementById("tt-outline-second-fill-color-input").value
+        },
+        {
+          width: parseInt(document.getElementById("tt-outline-global-width-input").value),
+          color: document.getElementById("tt-outline-global-fill-color-input").value
+        },
+        {
+          width: parseInt(document.getElementById("tt-outline-global2-width-input").value),
+          color: document.getElementById("tt-outline-global2-fill-color-input").value
+        }
+      ];
+
+      // Debug: Log the second outline's width
+      console.log(`Width for tt-outline-second-width-input = ${outlines[1].width}`);
+
+      // Apply text shadow (optional for debugging purposes)
+      const preview = document.getElementById("output");
+      const shadows = outlines
+        .filter(outline => outline.width > 0)
+        .map(outline => `${outline.width}px ${outline.width}px 0 ${outline.color}`);
+      preview.style.textShadow = shadows.join(", ");
+    };
+
+    // Add event listeners to inputs
+    document.querySelectorAll("input").forEach(input => {
+      input.addEventListener("input", updateOutline);
+    });
+
+    // Initialize the preview
+    updateOutline();
+  </script>
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>OpenCV.js Text Studio</title>
+    <script defer src="https://docs.opencv.org/4.x/opencv.js"></script>
+    <script defer src="./asset/js/script.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            margin: 20px;
+        }
+        #controls {
+            margin-bottom: 20px;
+        }
+        canvas {
+            border: 1px solid black;
+        }
+        .control-group {
+            margin-bottom: 10px;
+        }
+        .label {
+            display: inline-block;
+            width: 150px;
+        }
+        ul {
+            list-style-type: none;
+            padding: 0;
+        }
+        li {
+            cursor: pointer;
+            color: blue;
+            text-decoration: underline;
+        }
+        li:hover {
+            color: darkblue;
+        }
+    </style>
+</head>
+<body>
+    <h1>OpenCV.js Text Studio</h1>
+
+    <div id="controls">
+        <div class="control-group">
+            <label for="tt-text-textarea" class="label">Text:</label>
+            <textarea id="tt-text-textarea" rows="2" cols="30">MyTextStudio</textarea>
+        </div>
+        <div class="control-group">
+            <label for="tt-font-size-input" class="label">Font Size:</label>
+            <input type="range" id="tt-font-size-input" min="10" max="100" value="30">
+        </div>
+        <div class="control-group">
+            <label for="tt-fill-color-input" class="label">Text Color:</label>
+            <input type="color" id="tt-fill-color-input" value="#000000">
+        </div>
+        <div class="control-group">
+            <label for="tt-letter-spacing-input" class="label">Letter Spacing:</label>
+            <input type="range" id="tt-letter-spacing-input" min="0" max="10" value="0">
+        </div>
+        <div class="control-group">
+            <label for="tt-line-height-input" class="label">Line Height:</label>
+            <input type="range" id="tt-line-height-input" min="1" max="5" value="1">
+        </div>
+        <div class="control-group">
+            <label for="tt-rotate-input" class="label">Rotation:</label>
+            <input type="range" id="tt-rotate-input" min="-180" max="180" value="0">
+        </div>
+        <div class="control-group">
+            <label for="tt-fill-gradient-active-input" class="label">Enable Gradient:</label>
+            <input type="checkbox" id="tt-fill-gradient-active-input">
+        </div>
+        <div class="control-group">
+            <label for="tt-fill-gradient-angle-input" class="label">Gradient Angle:</label>
+            <input type="range" id="tt-fill-gradient-angle-input" min="0" max="360" value="0">
+        </div>
+        <div class="control-group">
+            <label for="tt-background-fill-image-import-input" class="label">Import Background:</label>
+            <input type="file" id="tt-background-fill-image-import-input" accept="image/*">
+        </div>
+        <div class="control-group">
+            <label for="tt-icon-size-input" class="label">Icon Size:</label>
+            <input type="range" id="tt-icon-size-input" min="10" max="200" value="50">
+        </div>
+        <div class="control-group">
+            <label for="tt-icon-rotate-input" class="label">Icon Rotation:</label>
+            <input type="range" id="tt-icon-rotate-input" min="-180" max="180" value="0">
+        </div>
+    </div>
+
+    <canvas id="canvasOutput" width="800" height="400"></canvas>
+
+    <div id="download-options">
+        <h2>Download</h2>
+        <ul id="tt-download-format-list">
+            <li data-format="png">Download as PNG</li>
+            <li data-format="jpg">Download as JPG</li>
+            <li data-format="textstudio">Download as TextStudio</li>
+        </ul>
+    </div>
+</body>
+</html>
